@@ -14,7 +14,7 @@ import ARKit
 extension ARPlaneAnchor {
     // Inches
     var width: Float { return self.extent.x * 39.3701}
-    var height: Float { return self.extent.z * 39.3701}
+    var length: Float { return self.extent.z * 39.3701}
 }
 
 class Grid : SCNNode {
@@ -45,13 +45,13 @@ class Grid : SCNNode {
         // 5.4
         if let textGeometry = self.childNode(withName: "textNode", recursively: true)?.geometry as? SCNText {
             // Update text to new size
-            textGeometry.string = String(format: "%.1f\"", anchor.width) + " x " + String(format: "%.1f\"", anchor.height)
+            textGeometry.string = String(format: "%.1f\"", anchor.width) + " x " + String(format: "%.1f\"", anchor.length)
         }
     }
     
     // 5.3
     private func setup() {
-        planeGeometry = SCNPlane(width: CGFloat(anchor.width), height: CGFloat(anchor.height))
+        planeGeometry = SCNPlane(width: CGFloat(anchor.width), height: CGFloat(anchor.length))
         
         let material = SCNMaterial()
         material.diffuse.contents = UIImage(named:"overlay_grid.png")
@@ -68,7 +68,7 @@ class Grid : SCNNode {
         textNodeMaterial.diffuse.contents = UIColor.black
         
         // Set up text geometry
-        textGeometry = SCNText(string: String(format: "%.1f\"", anchor.width) + " x " + String(format: "%.1f\"", anchor.height), extrusionDepth: 1)
+        textGeometry = SCNText(string: String(format: "%.1f\"", anchor.width) + " x " + String(format: "%.1f\"", anchor.length), extrusionDepth: 1)
         textGeometry.font = UIFont.systemFont(ofSize: 10)
         textGeometry.materials = [textNodeMaterial]
         
