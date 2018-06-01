@@ -64,6 +64,7 @@ class Grid : SCNNode {
         planeNode.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z);
         planeNode.transform = SCNMatrix4MakeRotation(Float(-Double.pi / 2.0), 1.0, 0.0, 0.0);
         
+        // 1.
         let textNodeMaterial = SCNMaterial()
         textNodeMaterial.diffuse.contents = UIColor.black
         
@@ -73,6 +74,7 @@ class Grid : SCNNode {
         textGeometry.materials = [textNodeMaterial]
         
         // Integrate text node with text geometry
+        // 2. 
         let textNode = SCNNode(geometry: textGeometry)
         textNode.name = "textNode"
         textNode.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z);
