@@ -10,7 +10,6 @@ import Foundation
 import SceneKit
 import ARKit
 
-// 5.2
 extension ARPlaneAnchor {
     // Inches
     var width: Float { return self.extent.x * 39.3701}
@@ -21,7 +20,6 @@ class Grid : SCNNode {
     
     var anchor: ARPlaneAnchor
     var planeGeometry: SCNPlane!
-    // 5.1
     var textGeometry: SCNText!
     
     init(anchor: ARPlaneAnchor) {
@@ -42,14 +40,12 @@ class Grid : SCNNode {
         let planeNode = self.childNodes.first!
         planeNode.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: self.planeGeometry, options: nil))
         
-        // 5.4
         if let textGeometry = self.childNode(withName: "textNode", recursively: true)?.geometry as? SCNText {
             // Update text to new size
             textGeometry.string = String(format: "%.1f\"", anchor.width) + " x " + String(format: "%.1f\"", anchor.length)
         }
     }
     
-    // 5.3
     private func setup() {
         planeGeometry = SCNPlane(width: CGFloat(anchor.width), height: CGFloat(anchor.length))
         
